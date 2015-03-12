@@ -1,0 +1,168 @@
+/* BOTONES */
+
+.button_gray_white_18, .button_white_gray_18
+{
+    border:0px;
+    display: block;
+    padding-top:0px;
+    padding-bottom:3px;
+    border-radius: 7px;
+	-ms-border-radius: 7px;
+	-moz-border-radius: 7px;
+	-webkit-border-radius: 7px;
+	-khtml-border-radius: 7px;
+	text-decoration: none;
+    text-align:center;
+    vertical-align: top;
+    cursor: pointer;   
+}
+
+.button_gray_white_18
+{ 
+    
+    background: #686975;
+    background: -webkit-gradient(linear, left top, left bottom, from(#b4b4bc), to(#686975));
+    background: -moz-linear-gradient(top, #b4b4bc, #686975);
+    background: -ms-linear-gradient(top, #b4b4bc, #686975);
+	color: #FFFFFF;
+    font-size: 18px;
+    font-family: Tahoma, Arial;
+    font-weight:bold;
+
+}
+.button_gray_white_18:hover {
+   background: #adadb5;
+   color: #ffffff;
+}
+
+.button_white_gray_18
+{ 
+    
+    background: #FFFFFF;
+	border: 1px solid #686975;
+	color: #686975;
+    font-size: 18px;
+    font-family: Tahoma, Arial;
+    font-weight:bold;
+
+}
+.button_white_gray_18:hover {
+   color: #adadb5;
+}
+
+
+/* ************************************************ */
+/* RECTANGULOS */
+
+.rec_somb_gris 
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #d0d0d0;
+    -moz-box-shadow: 0px 0px 2px #c0c0c0;
+    -webkit-box-shadow:0px 0px 2px #c0c0c0;
+    padding:0px 0px 0px 0px;
+}
+
+.rec_nuevo_ticket
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #000000;
+    -moz-box-shadow: 0px 0px 2px #000000;
+    -webkit-box-shadow:0px 0px 2px #000000;
+    padding:5px 5px 5px 5px;
+	background-color:#ff9b24;
+	font-family: Tahoma,Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: none; 
+	color: #000000;
+	text-decoration:none;
+}
+A.rec_nuevo_ticket:hover
+{
+	background-color:#f8c68c;
+}
+
+.rec_detalleticket
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #d0d0d0;
+    -moz-box-shadow: 0px 0px 2px #c0c0c0;
+    -webkit-box-shadow:0px 0px 2px #c0c0c0;
+    padding:10px 10px 10px 10px;
+	background-color:#FFFFFF;
+	font-family: Tahoma,Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: none; 
+	color: #00407c;
+	text-decoration:none;
+}
+
+.rec_tareas
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #000000;
+    -moz-box-shadow: 0px 0px 2px #000000;
+    -webkit-box-shadow:0px 0px 2px #000000;
+    padding:15px 100px 15px 100px;
+	background-color:#ff9b24;
+	font-family: Tahoma,Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: none; 
+	color: #000000;
+	text-decoration:none;
+}
+A.rec_tareas:hover
+{
+	background-color:#f8c68c;
+}
+
+.rec_tickets, .rec_listados
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #000000;
+    -moz-box-shadow: 0px 0px 2px #000000;
+    -webkit-box-shadow:0px 0px 2px #000000;
+    padding:15px 100px 15px 100px;
+	background-color:#18ff0d;
+	font-family: Tahoma,Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: none; 
+	color: #000000;
+	text-decoration:none;
+}
+A.rec_tickets:hover
+{
+	background-color:#99f494;
+}
+
+.rec_menu
+{
+    border-radius: 5px;
+    -moz-border-radius: 5px; /* Navegadores Firefox o Gecko */
+    -webkit-border-radius: 5px; /* Navegadores Safari o Webkit */
+    border:1px solid #000000;
+    -moz-box-shadow: 0px 0px 2px #000000;
+    -webkit-box-shadow:0px 0px 2px #000000;
+    padding:5px 5px 5px 5px;
+	background-color:#186f60;
+	font-family: Tahoma,Arial, Helvetica, sans-serif; 
+	font-size: 14px; 
+	font-style: none; 
+	color: #FFFFFF;
+	text-decoration:none;
+}
+A.rec_menu:hover
+{
+	background-color:#c8eee7;
+	color: #000000;
+}
