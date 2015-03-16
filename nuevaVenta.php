@@ -5,23 +5,6 @@ if (!$_SESSION['autorizado']){
 	exit;
 	include_once './config/conexion.php';
 }
-
-/*
-
-	
-		
-	
-
-</body>
-</html>
-    <script type="text/javascript" src="js/jquery-1.11.1.js"></script>
-    <script type="text/javascript" src="js/jquery-ui.min.js"></script>
-    <script type="text/javascript" src="jtable/jquery.jtable.min.js" ></script>
-    <script type="text/javascript" src="js/jquery.validationEngine.js"></script>
-    <script type="text/javascript" src="js/jquery.validationEngine-es.js"></script>
-    <script type="text/javascript" src="js/ventas.js" ></script>
-	<script type="text/javascript" src="js/productos.js" ></script>
-*/
 ?>
 
 
@@ -41,28 +24,15 @@ if (!$_SESSION['autorizado']){
     <link href="css/AdminLTE.min.css" rel="stylesheet" type="text/css" />
     <!-- AdminLTE Skins. Choose a skin from the css/skins 
          folder instead of downloading all of them to reduce the load. -->
-    <link href="css/skins/_all-skins.min.css" rel="stylesheet" type="text/css" />
+    <link href="css/skins/skin-blue.min.css" rel="stylesheet" type="text/css" />
 
+    <link href="css/customizeitems.css" rel="stylesheet" type="text/css" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
       <script src="https://oss.maxcdn.com/libs/respond.js/1.3.0/respond.min.js"></script>
-    <![endif]-->
-    <style>
-      .example-modal .modal {
-        position: relative;
-        top: auto;
-        bottom: auto;
-        right: auto;
-        left: auto;
-        display: block;
-        z-index: 1;
-      }
-      .example-modal .modal {
-        background: transparent!important;
-      }
-    </style>
+    <![endif]-->    
   </head>
   <body class="skin-blue">
     <div class="wrapper">     
@@ -114,7 +84,7 @@ if (!$_SESSION['autorizado']){
         <section class="content">     
 
 	<div id="clientes_div" ></div>  
-<button type="button" class="btn btn-primary btn-lg" onClick="open_container();" > Launch demo modal</button>
+<button type="button" class="btn btn-primary btn-lg " onClick="open_container();" >Agregar Producto</button>
 	<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
       <div class="modal-dialog ">
         <div class="modal-content">
@@ -132,7 +102,6 @@ if (!$_SESSION['autorizado']){
 	<table class="table table-hover">
 			<thead>
 				<tr>			
-					<th></th>
 					<th>Nombre</th>
 					<th>Codigo</th>
 					<th>$ x U.</th>
@@ -150,7 +119,7 @@ if (!$_SESSION['autorizado']){
 		<td>
 			<div class="input-group">
 	            <span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-	            <input id="subt" type="number" value=0 disabled></input>
+	            <input id="subt" type="number" value=0></input>
            	</div>
         </td>
     </tr>
@@ -165,7 +134,7 @@ if (!$_SESSION['autorizado']){
 	<tr><td>Bonificación General:</td>
 		<td>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+        <span class="input-group-addon"><i>%</i></span>
 				<input type="number" id="bonGral" value=0></input>
 			</div>
 		</td>
@@ -173,7 +142,7 @@ if (!$_SESSION['autorizado']){
 	<tr><td>Bonificación Adicional 1:</td>
 		<td>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+        <span class="input-group-addon"><i>%</i></span>
 				<input type="number" id="bonAd1" value=0></input>
 			</div>
 		</td>
@@ -181,7 +150,7 @@ if (!$_SESSION['autorizado']){
 	<tr><td>Bonificación Adicional 2:</td>
 		<td>
 			<div class="input-group">
-				<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
+        <span class="input-group-addon"><i>%</i></span>
 				<input type="number" id="bonAd2" value=0></input>
 			</div>
 		</td>
@@ -190,7 +159,7 @@ if (!$_SESSION['autorizado']){
 		<td>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-				<input id="iva" type="number" value=0 disabled></input>
+				<input id="iva" type="number" value=0></input>
 			</div>
 		</td>
 	</tr>
@@ -198,13 +167,18 @@ if (!$_SESSION['autorizado']){
 		<td>
 			<div class="input-group">
 				<span class="input-group-addon"><i class="fa fa-dollar"></i></span>
-				<input id="total" type="number" value=0 disabled></input>
+				<input id="total" type="number" value=0></input>
 			</div>
 		</td>
 	</tr>
 	</table>
 
-	<button onclick="guardaVenta()"> GUARDAR </button>          
+  <a class="btn btn-app button-app">
+    <i class="fa fa-save" onclick="guardaVenta()"></i>
+  </a>
+  <a class="btn btn-app button-app">
+    <i class="fa fa-repeat" onclick="actualizaVenta(false, false)"></i>
+  </a>      
 
         </section><!-- /.content -->
       </div><!-- /.content-wrapper -->
@@ -217,16 +191,16 @@ if (!$_SESSION['autorizado']){
     </div><!-- ./wrapper -->
 
     <!-- jQuery 2.1.3 -->
-    <script src="plugins/jQuery/jQuery-2.1.3.min.js"></script>
+    <script src="js/jquery-1.11.1.js"></script>
     <!-- Bootstrap 3.3.2 JS -->
     <script src="js/bootstrap.min.js" type="text/javascript"></script>
     <!-- FastClick -->
     <script src='plugins/fastclick/fastclick.min.js'></script>
     <!-- AdminLTE App -->
     <script src="js/app.min.js" type="text/javascript"></script>
-    <!-- AdminLTE for demo purposes -->
-    <script src="js/demo.js" type="text/javascript"></script>
+    
     <script type="text/javascript" src="js/ventas.js" ></script>
-	<script type="text/javascript" src="js/productos.js" ></script>
+
+    <script type="text/javascript" src="js/productos.js" ></script>
   </body>
 </html>

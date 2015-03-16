@@ -11,39 +11,50 @@ try
 	$parameters['token'] = $_COOKIE['token'];
 	$parameters['id_Vendedor']=$_SESSION['usrid'];
 
-	$Result=array();
+	$result=array();
 
 	$ajaxResp = $WS->Web_TraeVentasDelVendedor($parameters);
-	$respuesta=		$ajaxResp->Web_TraeVentasDelVendedorWebResult->Item;
+	$respuesta=		$ajaxResp->Web_TraeVentasDelVendedorResult->Item;
 	$ventas=array();
 	if($respuesta){
-	foreach ($respuesta as $vtakey=> $vta) {
-		$ventas[]=[
-		'id'=>$vta->Id,
-		'idCliente'=>$vta->Value1,
-		'cliente'=>$vta->Value2,
-		'fecha'=>$vta->Value3,
-		'total'=>$vta->Value4,
-		'estado'=>$vta->Value5
+		if(count ($respuesta) ==1)
+		{
+			$ventas[]= [
+				'id'=>$respuesta->Id,
+				'idCliente'=>$respuesta->Value1,
+				'cliente'=>$respuesta->Value2,
+				'fecha'=>$respuesta->Value3,
+				'total'=>$respuesta->Value4,
+				'estado'=>$respuesta->Value5
+			];
+		}else{
+	foreach ($respuesta as $vta) {
+		$ventas[]= [
+			'id'=>$vta->Id,
+			'idCliente'=>$vta->Value1,
+			'cliente'=>$vta->Value2,
+			'fecha'=>$vta->Value3,
+			'total'=>$vta->Value4,
+			'estado'=>$vta->Value5
 		];
 	}
-
-	$Result['Result']="OK";
-	$Result['Ventas'] = $ventas;
-}else{
-
-	$Result['Result']="ERROR";
-	$Result['Message'] = "No hay ventas";
 }
-	print json_encode($Result);
+	$result['error']=false;
+	$result['Ventas'] = $ventas;
+
+}else{
+	$result['error']=true;
+	$result['msj'] = "No hay ventas";
+}
+	print json_encode($result);
 }
 catch(Exception $ex)
 {	
     //Return error message
-	$jTableResult = array();
-	$jTableResult['Result'] = "ERROR";
-	$jTableResult['Message'] = $ex->getMessage();
-	print json_encode($jTableResult);
+	$result = array();
+	$result['error']=true;
+	$result['msj'] = $ex->getMessage();
+	print json_encode($result);
 }
 
 	

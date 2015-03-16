@@ -1,5 +1,10 @@
 $(document).ready(function () {     
     loadDatos();
+    if( location.search){
+        console.log(location.search.split("=")[1]);
+        venta.id=location.search.split("=")[1];
+        loadVentaParaEditar(venta.id);
+    }
 });
 var venta={
     lineas:     [],
@@ -19,74 +24,111 @@ var lineasDeVenta=[];
 var clientes=[];
 var lastIdLinea = 0;
 
-function loadDatos(){
+//Carga de datos
+var loadDatos = function(){    
 
-    var httpRequest = new XMLHttpRequest();
-    var url = "ajax/getDatos.php";
+    $.ajax({
+       url: "ajax/getDatos.php",
+       data: "",
+       dataType: "JSON",
+       timeout: 300000,
+       type: "POST",
+       success: function(response){
 
-    httpRequest.open("GET", url, true);
-
-    httpRequest.onreadystatechange = function() {
-        if(httpRequest.readyState == 4 && httpRequest.status == 200) {
-            var return_data = JSON.parse(httpRequest.responseText);
-            
-            if(return_data['Result']=='OK'){
-
-                var arregloProd = return_data['Productos'];
+           if(!response.error){
+                var arregloProd = response.Productos;
 
                 arregloProd.forEach(function(entry) {
                     productos.push(entry);
                 });
 
-                var arregloClientes = return_data['Clientes'];
+                var arregloClientes = response.Clientes;
 
                 arregloClientes.forEach(function(entry) {
                     clientes.push(entry);
                 });
-            }
-            else{
-                console.log("Error de carga:");
-                console.log(return_data['Message']);
-            }
+                cargaComboClientes();            
+           } else {
+               alert(response.msj);
+           }
 
-            cargaComboClientes();
-        }
-    }
-    httpRequest.send(); // Actually execute the request
+       },
+       error: function(xhr){
+           alert("No se puede realizar la accion deseada en este momento");
+       },
+       complete: function(){
+       }
+    });
 }
 
-function guardaVenta(){
-    if(venta.lineas.length == 0){
-        alert("La venta no tiene ningun item cargado");
-        return;
-    }
-    var posicion=document.getElementById('cli_id').options.selectedIndex;                     
-    if(document.getElementById('cli_id').options[posicion].value==0){
-        alert("No selecciono ningun cliente");
-        return;
-    }
-    venta.idCliente=document.getElementById('cli_id').options[posicion].value;
-    //mando la venta al servidor
-     // Create our XMLHttpRequest object
-    var hr = new XMLHttpRequest();
-    // Create some variables we need to send to our PHP file
-    var url = "ajax/getProductos.php";
-    var token = document.getElementById("first_name").value;
-    hr.open("POST", url, true);
-    // Set content type header information for sending url encoded variables in the request
-    hr.setRequestHeader("Content-type", "application/json;charset=UTF-8");
-    // Access the onreadystatechange event for the XMLHttpRequest object
-    hr.onreadystatechange = function() {
-        if(hr.readyState == 4 && hr.status == 200) {
-            var return_data = hr.responseText;
-            document.getElementById("status").innerHTML = return_data;
-        }
-    }
-    // Send the data to PHP now... and wait for response to update the status div
-    hr.send(JSON.stringify(venta)); // Actually execute the request
-}
+var loadVentaParaEditar = function(idVta){
+    $.ajax({
+           url: "ajax/getVentaParaEditar.php",
+           data: {idVta: idVta},
+           dataType: "JSON",
+           timeout: 300000,
+           type: "POST",
+           success: function(response){
 
-function cargaComboClientes(){
+               if(!response.error){
+                venta.subtotal= response.Venta.subtotal;
+                venta.iva= response.Venta.iva;
+                venta.desc= response.Venta.desc;
+                venta.bonGral= response.Venta.bonGral;
+                venta.bonAd1= response.Venta.bonAd1;
+                venta.bonAd2= response.Venta.bonAd2;
+                venta.total= response.Venta.total;
+                venta.idCliente= response.Venta.idCliente;
+                response.Venta.lineas.forEach(function(linea){
+                    alert("HACER!!!!");
+                });
+                console.log(venta);
+                    /*
+id'=>$respuesta->Id,
+'idCliente'=>$respuesta->Value1,
+'cliente'=>$respuesta->Value2,
+'fecha'=>$respuesta->Value3,
+'total'=>$respuesta->Value4,
+'estado'=>$respuesta->Value5,
+'lineas'=>$lineas,
+'subtotal'=> explode ("=" , $datosAdic[0])[1],
+'iva'=> explode ("=" , $datosAdic[1])[1],
+'desc'=> explode ("=" , $datosAdic[2])[1],
+'bonGral'=> explode ("=" , $datosAdic[3])[1],
+'bonAd1'=> explode ("=" , $datosAdic[4])[1],
+'bonAd2'=> explode ("=" , $datosAdic[5])[1]     
+
+bonAd1
+bonAd2
+bonGral
+cliente
+desc
+estado
+fecha
+id
+iva
+lineas: Array[1]0: Object
+cantidad: "1"
+codigo: "15008"
+idProd: 1431nombre: "TACHO F-15 ENLOZADO"
+precioventafijo: "178,00"
+                   */
+               } else {
+                   alert(response.msj);
+               }
+
+           },
+           error: function(xhr){
+               alert("No se puede realizar la accion deseada en este momento");
+           },
+           complete: function(){
+           }
+        });
+};
+
+//Manejo de pantalla
+
+var cargaComboClientes = function(){
     var stringSelect ="";
     stringSelect+="<select id='cli_id' name='cli_id' class='form-control'><option value='0' SELECTED>SELECCIONE UN CLIENTE</option>";
     clientes.forEach(function(valor){
@@ -97,15 +139,7 @@ function cargaComboClientes(){
     elemento.innerHTML=stringSelect;
 }
 
-function actualizaSubtotalVenta(){
-    var subT=0;
-    venta.lineas.forEach(function(line){
-        subT+=line.subtotal;
-    });
-    venta.subtotal=subT;
-}
-
-function actualizarGrilla(linea){
+var actualizarGrilla = function(linea){
     var element = document.getElementById("lineasVenta");
     var cadena = "";
     cadena+="<tr>";
@@ -120,46 +154,15 @@ function actualizarGrilla(linea){
     element.innerHTML+=cadena;
 }
 
-function addLinea(id, codigo){
-    var cant = document.getElementById("cantidad").value;
-    if(cant){
-
-        var prod;
-        productos.forEach(function(p){
-            if(p.Id==id){
-                prod=p;
-                //break;
-            }
-        });
-        //actualizo el id de linea
-        lastIdLinea++;
-        //creo la linea
-        var linea = {
-            idLinea: lastIdLinea,
-            producto: prod,
-            cantidad: cant,
-            subtotal: parseFloat(prod.Precio) * parseFloat(cant)
-        };
-
-        //agrego la linea a la venta
-        venta.lineas.push(linea);
-        
-        actualizaVenta();
-
-        actualizarGrilla(linea);        
-    };
-}
-function open_container(){
-    //var size=document.getElementById('mysize').value;
-    var content =actualizaGrillaProductos();
-    
+var open_container = function(){
+    var content =actualizaGrillaProductos();    
     var title = 'My dynamic modal dialog form with bootstrap';
     var footer = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
-    setModalBox(title,content,footer,'small');//size);
+    setModalBox(title,content,footer,'standart');//size);
     $('#myModal').modal('show');
 }
 
-function abreContainterAgregarProducto(id){
+var abreContainterAgregarProducto = function(id){
     //var size=document.getElementById('mysize').value;
     var filtro=document.getElementById("filtroProd").value;
     var content = "";   
@@ -172,8 +175,8 @@ function abreContainterAgregarProducto(id){
                 //break;
             }
         });
-        content+="Producto: "+prod.Nombre+"\n";
-        content+="Cantidad: <input type='number' scale='1' id='cantidad'  min=0 max=9999/>";
+        content+="Producto: "+prod.Nombre+"<br/>";
+        content+="Cantidad: <input type='number' scale='1' value=1  id='cantidad'  min=0 max=9999/>";
        // content+="<br><button onclick='addLinea("+prod.Id+","+'"'+prod.Codigo+'"'+")'>Agregar</button>";'addLinea("+prod.Id+","+'"'+prod.Codigo+'"'+")'
        // content+="<br><button onclick='cargaProductos()'>Cancelar</button>"; 
         footer='<button type="button" class="btn btn-default" data-dismiss="modal">Close</button><button onclick="addLinea('+prod.Id+','+"'"+prod.Codigo+"'"+')" type="button" class="btn btn-primary" data-dismiss="modal">Agregar Producto</button>';                  
@@ -186,7 +189,7 @@ function abreContainterAgregarProducto(id){
     //
 }
 
-function setModalBox(title,content,footer,$size){
+var setModalBox = function(title,content,footer,$size){
     document.getElementById('modal-bodyku').innerHTML=content;
     document.getElementById('myModalLabel').innerHTML=title;
     document.getElementById('modal-footerq').innerHTML=footer;
@@ -210,40 +213,25 @@ function setModalBox(title,content,footer,$size){
     }
 }
 
-function actualizaGrillaProductos(){
+var actualizaGrillaProductos = function(){
     var filtro='';
     try{
         filtro=document.getElementById("filtroProd").value;
     }catch(ex){
         filtro='';
     }
-    var content="";
+   var content="";
     content +='<div class="input-group input-group-sm">';
-    content+='<table><tr>';
-    content +='<td><input type="text" class="form-control" id="filtroProd">';
+    content +='<tr><td colspan="12"><input type="text" class="form-control" id="filtroProd" value="'+filtro+'">';
     content +='<span class="input-group-btn">';
     content +='<button type="button" class="btn btn-default" onclick="filtraGrillaProductos()">FILTRAR</button>';
-    content +='</span></td></tr>';
-    try{
-        productos.forEach(function(prod){
-                if((prod.Nombre.toUpperCase().indexOf(filtro.toUpperCase())>-1) ||  (prod.Codigo.toUpperCase().indexOf(filtro.toUpperCase())>-1)){
-                    var ls="<tr>";
-                    ls+="<td>"+prod.Codigo+"</td>";
-                    ls+="<td>"+prod.Nombre+"</td>";
-                    ls+="<td><button onclick='abreContainterAgregarProducto("+prod.Id+")'>Agregar</button>"+"</td>\n";
-                    ls+="</tr>\n";
-                    content+=ls;
-                }
-        });
-    }catch(ex){
-        console.log(ex);
-    }    
-    content+='<table>';
-    content +='</div>';
+    content +='</span></td></tr></div>';
+    content +='<div class="form-group input-group-sm" style="height:40px; overflow-y:auto">';    
+    content+='<table class="table table-hover">';
     return content;
 }
 
-function filtraGrillaProductos(){
+var filtraGrillaProductos = function(){
     var filtro='';
     try{
         filtro=document.getElementById("filtroProd").value;
@@ -252,18 +240,20 @@ function filtraGrillaProductos(){
     }
     var content="";
     content +='<div class="input-group input-group-sm">';
-    content+='<table><tr>';
-    content +='<td><input type="text" class="form-control" id="filtroProd" value="'+filtro+'">';
+    content +='<tr><td colspan="12"><input type="text" class="form-control" id="filtroProd" value="'+filtro+'">';
     content +='<span class="input-group-btn">';
     content +='<button type="button" class="btn btn-default" onclick="filtraGrillaProductos()">FILTRAR</button>';
-    content +='</span></td></tr>';
+    content +='</span></td></tr></div>';
+    content +='<div class="form-group input-group-sm" style="height:400px; overflow-y:auto">';    
+    content+='<table class="table table-hover">';
+    
     try{
         productos.forEach(function(prod){
                 if((prod.Nombre.toUpperCase().indexOf(filtro.toUpperCase())>-1) ||  (prod.Codigo.toUpperCase().indexOf(filtro.toUpperCase())>-1)){
                     var ls="<tr>";
                     ls+="<td>"+prod.Codigo+"</td>";
                     ls+="<td>"+prod.Nombre+"</td>";
-                    ls+="<td><button onclick='abreContainterAgregarProducto("+prod.Id+")'>Agregar</button>"+"</td>\n";
+                    ls+="<td><button class='btn btn-default button-circluar' onclick='abreContainterAgregarProducto("+prod.Id+")'><i class='fa fa-plus-circle'></i></button>"+"</td>\n";
                     ls+="</tr>\n";
                     content+=ls;
                 }
@@ -276,47 +266,7 @@ function filtraGrillaProductos(){
     document.getElementById('modal-bodyku').innerHTML=content;
 }
 
-function eliminaLinea(id_linea){
-    try{
-        venta.lineas.forEach(function(line){
-            if(line.idLinea==id_linea){
-                var indiceLineaAEliminar= venta.lineas.indexOf(line);
-                venta.lineas.splice(indiceLineaAEliminar, 1);
-            }
-        });
-    }catch(ex){
-
-    }
-
-    actualizaVenta();
-
-    reescribirLineas();    
-}
-
-function actualizaVenta(){
-    //actualizo el SubTotal
-        actualizaSubtotalVenta();
-        //Actualizo los demas campos: 
-        //actualizo los divs con los datos
-        venta.desc= parseFloat(document.getElementById("desc").value);
-        venta.bonGral= parseFloat(document.getElementById("bonGral").value);
-        venta.bonAd1 = parseFloat(document.getElementById("bonAd1").value);
-        venta.bonAd2= parseFloat(document.getElementById("bonAd2").value);
-        var tot = venta.subtotal;
-        /*
-        if(venta.desc){ tot*=(100 - parseFloat(venta.desc));}
-        if(venta.bonGral){tot*=(100 - parseFloat(venta.bonGral)); }
-        if(venta.bonAd1){tot*=(100 - parseFloat(venta.bonAd1));}
-        if(venta.bonAd2){tot*=(100 - parseFloat(venta.bonAd2)); }
-        */ //VER COMO CALCULAR LAS BONIFICACIONES
-        venta.iva=tot*_iva;
-        venta.total=tot*(1+_iva);
-        document.getElementById("subt").value=venta.subtotal;
-        document.getElementById("iva").value=venta.iva;
-        document.getElementById("total").value=venta.total;
-}
-
-function reescribirLineas(){
+var reescribirLineas = function(){
     var element = document.getElementById("lineasVenta");
     element.innerHTML="";
     venta.lineas.forEach(function(line){
@@ -332,3 +282,146 @@ function reescribirLineas(){
         element.innerHTML+=cadena;
     });
 }
+
+//VENTAS
+var guardaVenta = function(){
+    if(venta.lineas.length == 0){
+        alert("La venta no tiene ningun item cargado");
+        return;
+    }
+    var posicion=document.getElementById('cli_id').options.selectedIndex;                     
+    if(document.getElementById('cli_id').options[posicion].value==0){
+        alert("No selecciono ningun cliente");
+        return;
+    }
+    venta.idCliente=document.getElementById('cli_id').options[posicion].value;
+    //mando la venta al servidor
+    var dataObj = { venta: JSON.stringify(venta) };
+
+    $.ajax({
+       url: "ajax/crearVenta.php",
+       data: dataObj,
+       dataType: "JSON",
+       timeout: 300000,
+       type: "POST",
+       success: function(response){
+
+           if(!response.error){
+                    alert("La venta fue guardada con exito");
+                    lineasDeVenta=[];
+                    lastIdLinea = 0;
+                    reescribirLineas();
+                    document.getElementById("subt").value=0;
+                    document.getElementById("desc").value=0;
+                    document.getElementById("bonGral").value=0;
+                    document.getElementById("bonAd1").value=0;
+                    document.getElementById("bonAd2").value=0;
+                    document.getElementById("iva").value=0;
+                    document.getElementById("total").value=0;     
+                    document.getElementById("lineasVenta").innerHTML="";         
+           } else {
+               alert(response.msj);
+           }
+
+       },
+       error: function(xhr){
+           alert("No se puede realizar la accion deseada en este momento");
+       },
+       complete: function(){
+       }
+    });
+}
+
+var actualizaSubtotalVenta = function(){
+    var subT=0;
+    venta.lineas.forEach(function(line){
+        subT+=line.subtotal;
+    });
+    venta.subtotal=subT;
+}
+
+var actualizaVenta = function(vieneDeEliminar, vieneDeAgregar){
+    //actualizo el SubTotal
+    if(vieneDeEliminar){
+        actualizaSubtotalVenta();
+    }
+
+    if(vieneDeAgregar){        
+    }
+
+    if(!vieneDeAgregar && !vieneDeEliminar){
+        venta.subtotal=document.getElementById("subt").value;
+    }
+
+        //Actualizo los demas campos: 
+        //actualizo los divs con los datos
+        venta.desc= parseFloat(document.getElementById("desc").value);
+        venta.bonGral= parseFloat(document.getElementById("bonGral").value);
+        venta.bonAd1 = parseFloat(document.getElementById("bonAd1").value);
+        venta.bonAd2= parseFloat(document.getElementById("bonAd2").value);
+        venta.iva= parseFloat(document.getElementById("iva").value);
+        var tot = parseFloat(venta.subtotal);
+        
+        if(venta.desc){ tot-=parseFloat(venta.desc);}
+        if(venta.bonGral){tot=tot*(100 - parseFloat(venta.bonGral))/100; }
+        if(venta.bonAd1){tot=tot*(100 - parseFloat(venta.bonAd1))/100;}
+        if(venta.bonAd2){tot=tot*(100 - parseFloat(venta.bonAd2))/100; }
+        //VER COMO CALCULAR LAS BONIFICACIONES
+        venta.total=tot+parseFloat(venta.iva);
+        document.getElementById("subt").value=venta.subtotal;
+        document.getElementById("total").value=venta.total;
+}
+
+//LINEAS
+var addLinea = function(id, codigo){
+    var cant = document.getElementById("cantidad").value;
+    if(cant){
+
+        var prod;
+        productos.forEach(function(p){
+            if(p.Id==id){
+                prod=p;
+                //break;
+            }
+        });
+        //actualizo el id de linea
+        lastIdLinea++;
+        //creo la linea
+        var linea = {
+            idLinea: lastIdLinea,
+            producto: prod,
+            cantidad: cant,
+            subtotal: parseFloat(prod.Precio) * parseFloat(cant)
+        };
+
+        //agrego la linea a la venta
+        venta.lineas.push(linea);
+        //actualizo el total de la venta
+        venta.subtotal=parseFloat(document.getElementById("subt").value)+parseFloat(linea.subtotal);
+        
+        actualizaVenta(false, true);
+
+
+        actualizarGrilla(linea);    
+
+        console.log(venta);    
+    };
+}
+
+var eliminaLinea = function(id_linea){
+    try{
+        venta.lineas.forEach(function(line){
+            if(line.idLinea==id_linea){
+                var indiceLineaAEliminar= venta.lineas.indexOf(line);
+                venta.lineas.splice(indiceLineaAEliminar, 1);
+            }
+        });
+    }catch(ex){
+
+    }
+
+    actualizaVenta(true, false);
+
+    reescribirLineas();    
+}
+
