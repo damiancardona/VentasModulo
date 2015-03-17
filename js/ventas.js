@@ -80,7 +80,25 @@ var loadVentaParaEditar = function(idVta){
                 venta.total= response.Venta.total;
                 venta.idCliente= response.Venta.idCliente;
                 response.Venta.lineas.forEach(function(linea){
-                    alert("HACER!!!!");
+                    //actualizo el id de linea
+                    lastIdLinea++;
+                    //creo la linea
+                    var line = {
+                        idLinea: lastIdLinea,
+                        producto: linea,
+                        cantidad: linea.cantidad,
+                        subtotal: 0
+                    };
+                    //buco y agrego el prod
+                    productos.forEach(function(pr){
+                        if(pr.Id==linea.idProd){
+                            line.producto=pr;
+                            line.subtotal=(parseFloat(line.cantidad)*parseFloat(linea.precioventafijo));
+                        }
+                    });
+
+                    venta.lineas.push(line);
+                    
                 });
                 console.log(venta);
                     /*
@@ -108,10 +126,11 @@ fecha
 id
 iva
 lineas: Array[1]0: Object
-cantidad: "1"
-codigo: "15008"
-idProd: 1431nombre: "TACHO F-15 ENLOZADO"
-precioventafijo: "178,00"
+    cantidad: "1"
+    codigo: "15008"
+    idProd: 1431
+    nombre: "TACHO F-15 ENLOZADO"
+    precioventafijo: "178,00"
                    */
                } else {
                    alert(response.msj);

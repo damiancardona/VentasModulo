@@ -40,7 +40,7 @@
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
              </div>
              <div class="form-group has-feedback">
-                <input type="text" class="form-control" id="pass" name="pass" placeholder="Clave"/>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Clave"/>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
              </div>
              <label class="control-label" for="user pass"><i class="fa fa-times-circle-o"></i> Usuario o clave incorrecta</label>
@@ -53,7 +53,7 @@
               <span class="glyphicon glyphicon-user form-control-feedback"></span>
              </div>
              <div class="form-group has-feedback">
-                <input type="text" class="form-control" id="pass" name="pass" placeholder="Clave"/>
+                <input type="password" class="form-control" id="pass" name="pass" placeholder="Clave"/>
                 <span class="glyphicon glyphicon-lock form-control-feedback"></span>
              </div>
            <?php
