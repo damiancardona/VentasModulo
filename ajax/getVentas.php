@@ -10,6 +10,7 @@ try
 	$parameters = array();
 	$parameters['token'] = $_COOKIE['token'];
 	$parameters['id_Vendedor']=$_SESSION['usrid'];
+	$parameters['traerTodas']=true;
 
 	$result=array();
 

@@ -61,19 +61,34 @@ try
 	$respuesta=		$result->Web_TraeClientesParaVendedorWebResult->Item;
 
 	$clientes=array();
-	foreach ($respuesta as $clkey=> $cl) {
-		$clientes[]=[
-		'id' => $cl->Id,
-		'nombre' =>$cl->Value1,
-		'email'=>$cl->Value2
-		];
+	switch(gettype($respuesta)) {
+		case 'array':
+			foreach ($respuesta as $clkey => $cl) {
+				$clientes[] = [
+					'id' => $cl->Id,
+					'nombre' => $cl->Value1,
+					'email' => $cl->Value2
+				];
+			}
+			$retorno['Clientes'] = $clientes;
+			$retorno['error'] = false;
+			break;
+		case 'object':
+			$clientes[] = [
+				'id' => $respuesta->Id,
+				'nombre' => $respuesta->Value1,
+				'email' => $respuesta->Value2
+			];
+			$retorno['Clientes'] = $clientes;
+			$retorno['error'] = false;
+			break;
+		default:
+			$retorno['Clientes'] = null;
+			$retorno['error'] = true;
+			$retorno['msj']="Ocurrio un error al buscar los clientes del vendedor";
+			break;
 	}
-	
-	$retorno['Clientes'] = $clientes;
 
-	
-
-	$retorno['error'] = false;
 	print json_encode($retorno);
 
 }catch(Exception $ex){	

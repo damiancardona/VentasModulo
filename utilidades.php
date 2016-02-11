@@ -1,5 +1,6 @@
 <?php
 
+session_start();
 function ComboProductos($width,$height,$id_producto_seleccionar,$es_filtro)
 {	
 	include_once './config/conexion.php';
@@ -465,4 +466,19 @@ function MailNuevoTicketMapplics($idCliente, $numeroTicket)
 				</html>";
 	return $control;
 }
+
+
+
+//******************************************
+//**************USUARIOS******************
+//******************************************
+function LogOut(){
+	$_SESSION['usrid'] = null;
+	$_SESSION['autorizado'] = false;
+	$_SESSION['userName'] = null;
+	setcookie('token', null);
+	setcookie('usrid', null);
+
+}
+
 ?>

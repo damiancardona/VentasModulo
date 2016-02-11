@@ -45,16 +45,21 @@ var actualizaGrilla = function (){
     cadena+="<th></th>";
     cadena+="<th></th>";
     cadena+="</tr>";
-    ventas.forEach(function(vta){
-        cadena+="<tr>";
-        cadena+="<td hidden='true'>"+vta.id+"</td>";
-        cadena+="<td hidden='true'>"+vta.idCliente+"</td>";
-        cadena+="<td>"+vta.cliente+"</td>";
-        cadena+="<td style='width: 180px'>"+vta.fecha+"</td>";
-        cadena+="<td style='width: 100px'>$"+vta.total+"</td>";
-        cadena+="<td>"+vta.estado+"</td>";
-        cadena+="<td style='width: 70px'><button onclick='editaVenta("+vta.id+")' class='btn btn-block btn-primary btn-sm button-accion-chico'>Editar</button>"
-        cadena+="<td style='width: 70px'><button onclick='eliminaVenta("+vta.id+")' class='btn btn-block btn-danger btn-sm button-accion-chico'>Eliminar</button>"
+    ventas.forEach(function(vta) {
+        cadena += "<tr>";
+        cadena += "<td hidden='true'>" + vta.id + "</td>";
+        cadena += "<td hidden='true'>" + vta.idCliente + "</td>";
+        cadena += "<td>" + vta.cliente + "</td>";
+        cadena += "<td style='width: 180px'>" + vta.fecha + "</td>";
+        cadena += "<td style='width: 100px'>$" + vta.total + "</td>";
+        cadena += "<td>" + vta.estado + "</td>";
+        if (vta.estado == 'PENDIENTE WEB' || vta.estado == 'SIN APROBAR WEB') {
+            cadena += "<td style='width: 70px'><button onclick='editaVenta(" + vta.id + ")' class='btn btn-block btn-primary btn-sm button-accion-chico'>Editar</button>"
+            cadena += "<td style='width: 70px'><button onclick='eliminaVenta(" + vta.id + ")' class='btn btn-block btn-danger btn-sm button-accion-chico'>Eliminar</button>"
+        }else{
+            cadena += "<td style='width: 70px'><button onclick='editaVenta(" + vta.id + ")' class='btn btn-block btn-primary btn-sm button-accion-chico'>Ver</button>"
+            cadena += "<td style='width: 70px'><button onclick='' class='btn btn-block btn-danger btn-sm button-accion-chico' disabled>Eliminar</button>"
+        }
         cadena+="</tr>";
     });
     cadena+="</table>";
