@@ -1,5 +1,6 @@
 $(document).ready(function () {
     $('#seccionVenta').hide();
+    $('#spinner').show();
     if( location.search){
         console.log(location.search.split("=")[1]);
         venta.id=location.search.split("=")[1];
@@ -77,9 +78,6 @@ var loadDatos = function(){
                        break;
                 }
                 cargaComboClientes();
-               if(!editando){
-                   $('#seccionVenta').show();
-               }
            } else {
                alert(response.msj);
                window.location="menu.php";
@@ -91,6 +89,10 @@ var loadDatos = function(){
            window.location="menu.php";
        },
        complete: function(){
+           if(!editando){
+               $('#seccionVenta').show();
+               $('#spinner').hide();
+           }
        }
     });
 }
@@ -138,7 +140,6 @@ var loadVentaParaEditar = function(idVta) {
                 });
                 armarVentaParaEditar();
 
-                $('#seccionVenta').show();
                 switch(venta.estado){
                     case 'PENDIENTE WEB':
                     case 'SIN APROBAR WEB':
@@ -191,6 +192,8 @@ var loadVentaParaEditar = function(idVta) {
             window.location="menu.php";
         },
         complete: function () {
+            $('#seccionVenta').show();
+            $('#spinner').hide();
         }
     });
 };
@@ -199,10 +202,15 @@ var loadVentaParaEditar = function(idVta) {
 
 var cargaComboClientes = function(){
     var stringSelect ="";
+    stringSelect+="<label class='col-md-1 control-label'>Cliente:</label><div class='col-md-11'>";
+
     stringSelect+="<select id='cli_id' name='cli_id' class='form-control'><option value='0' SELECTED>SELECCIONE UN CLIENTE</option>";
     clientes.forEach(function(valor){
         stringSelect+="<option value='" + valor.id + "'>" + valor.nombre + "</option>";
     });
+
+    stringSelect+="</div>";
+
     var elemento = document.getElementById("clientes_div");
 
     elemento.innerHTML=stringSelect;
@@ -212,11 +220,11 @@ var actualizarGrilla = function(linea){
     var element = document.getElementById("lineasVenta");
     var cadena = "";
     cadena+="<tr>";
-    cadena+="<td>"+linea.producto.Nombre+"</td>";
     cadena+="<td>"+linea.producto.Codigo+"</td>";
-    cadena+="<td>"+linea.producto.Precio+"</td>";
-    cadena+="<td>"+linea.cantidad+"</td>";
-    cadena+="<td>"+linea.subtotal+"</td>";
+    cadena+="<td>"+linea.producto.Nombre+"</td>";
+    cadena+="<td>"+agregarSeparadoresDeMil(linea.producto.Precio)+"</td>";
+    cadena+="<td>"+agregarSeparadoresDeMil(linea.cantidad)+"</td>";
+    cadena+="<td>"+agregarSeparadoresDeMil(linea.subtotal)+"</td>";
     if(venta.estado == 'PENDIENTE WEB' || venta.estado=='SIN APROBAR WEB'){
         cadena+="<td><button onclick='eliminaLinea("+line.idLinea+")'>Eliminar</button></td>";
     }else{
@@ -229,7 +237,7 @@ var actualizarGrilla = function(linea){
 
 var open_container = function(){
     var content =actualizaGrillaProductos();    
-    var title = 'My dynamic modal dialog form with bootstrap';
+    var title = 'Seleccionar Productos';
     var footer = '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>';
     setModalBox(title,content,footer,'standart');//size);
     $('#myModal').modal('show');
@@ -345,11 +353,11 @@ var reescribirLineas = function(){
     venta.lineas.forEach(function(line){
         var cadena = "";
         cadena+="<tr>";
-        cadena+="<td>"+line.producto.Nombre+"</td>";
         cadena+="<td>"+line.producto.Codigo+"</td>";
-        cadena+="<td>"+line.producto.Precio+"</td>";
-        cadena+="<td>"+line.cantidad+"</td>";
-        cadena+="<td>"+line.subtotal+"</td>";
+        cadena+="<td>"+line.producto.Nombre+"</td>";
+        cadena+="<td>"+agregarSeparadoresDeMil(line.producto.Precio)+"</td>";
+        cadena+="<td>"+agregarSeparadoresDeMil(line.cantidad)+"</td>";
+        cadena+="<td>"+agregarSeparadoresDeMil(line.subtotal)+"</td>";
         if(venta.estado == 'PENDIENTE WEB' || venta.estado=='SIN APROBAR WEB'){
             cadena+="<td><button onclick='eliminaLinea("+line.idLinea+")'>Eliminar</button></td>";
         }else{
@@ -360,16 +368,46 @@ var reescribirLineas = function(){
     });
 }
 
+var agregarSeparadoresDeMil = function(numero){
+    var num = parseFloat(numero);
+    //multiplico por 100 para sacar los decimales y poner la coma:
+    num = num * 100;
+    var numeroRespuesta = "";
+    var numString = num.toString();
+    if(numString.length == 5){
+        numeroRespuesta = numString[0]+numString[1]+numString[2]+','+numString[3]+numString[4];
+    }
+    else{
+        var lugares = 1;
+        numeroRespuesta = ','+numString[numString.length-2]+numString[numString.length-1];
+        for(var i=numString.length-3; i>=0; i--){
+            numeroRespuesta = numString[i]+numeroRespuesta;
+            if(lugares==3 && i>0){
+                lugares = 1;
+                numeroRespuesta = '.'+numeroRespuesta;
+            }else{
+                lugares++;
+            }
+        }
+    }
+
+    return numeroRespuesta;
+}
+
 //VENTAS
 var guardaVenta = function(){
+
+    $('#spinner').show();
     if(venta.lineas.length == 0){
         alert("La venta no tiene ningun item cargado");
+        $('#spinner').hide();
         return;
     }
     actualizaVenta(false, false);
     var posicion=document.getElementById('cli_id').options.selectedIndex;                     
     if(document.getElementById('cli_id').options[posicion].value==0){
         alert("No selecciono ningun cliente");
+        $('#spinner').hide();
         return;
     }
     venta.idCliente=document.getElementById('cli_id').options[posicion].value;
@@ -407,6 +445,7 @@ var guardaVenta = function(){
            alert("No se puede realizar la accion deseada en este momento");
        },
        complete: function(){
+           $('#spinner').hide();
        }
     });
 }
