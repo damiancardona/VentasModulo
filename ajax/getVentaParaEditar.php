@@ -8,7 +8,7 @@ try
 
 
 	$parameters = array();
-	$parameters['token'] = $_COOKIE['token'];
+	$parameters['token'] = $_SESSION['token'];
 	$parameters['idVenta'] = $_POST['idVta'];
 
 	$result=array();
@@ -42,7 +42,8 @@ try
 				'iva' => explode("=", $datosAdic[2])[1],
 				'bonGral' => explode("=", $datosAdic[3])[1],
 				'bonAd1' => explode("=", $datosAdic[4])[1],
-				'bonAd2' => explode("=", $datosAdic[5])[1]
+				'bonAd2' => explode("=", $datosAdic[5])[1],
+				'fechaEntrega' => explode("=", $datosAdic[6])[1]
 			];
 			$result['error'] = false;
 			$result['Venta'] = $venta;

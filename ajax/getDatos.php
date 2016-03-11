@@ -11,10 +11,8 @@ try
 		$result['msj'] = $ex->getMessage();
 		print json_encode($result); return;		
 	}
-
-
 	$parameters = array();
-	$parameters['token'] = $_COOKIE['token'];
+	$parameters['token'] = $_SESSION['token'];
 
 	try{
 		$result = $WS->Web_TraeProductos($parameters);
@@ -38,7 +36,7 @@ try
 	$retorno['Productos'] = $result->Web_TraeProductosResult->Productos;
 
 	$parameters = array();
-	$parameters['token']=$_COOKIE['token'];
+	$parameters['token']=$_SESSION['token'];
 	$parameters['id_Vendedor']=$_SESSION['usrid'];
 
 	try{

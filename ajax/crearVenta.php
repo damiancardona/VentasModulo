@@ -16,7 +16,7 @@ try
 	$venta =json_decode($_POST['venta']);
 
 	$parameters = array();
-	$parameters['token'] = 			$_COOKIE['token'];
+	$parameters['token'] = 			$_SESSION['token'];
 	$parameters['id_vendedor']=		$_SESSION['usrid'];
 	$parameters['id_cliente'] = 	$venta->idCliente;
 	$parameters['_descuento']=		$venta->desc;
@@ -26,6 +26,7 @@ try
 	$parameters['_iva']=			$venta->iva;
 	$parameters['_subtotal']=		$venta->subtotal;
 	$parameters['_total']=			$venta->total;
+	$parameters['_fecha']=			$venta->fEntrega;
 	$parameters['idVta']=			$venta->id;
 
 	$parameters['cantidades_prods']= array();

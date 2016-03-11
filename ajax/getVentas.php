@@ -8,7 +8,7 @@ try
 
 
 	$parameters = array();
-	$parameters['token'] = $_COOKIE['token'];
+	$parameters['token'] = $_SESSION['token'];
 	$parameters['id_Vendedor']=$_SESSION['usrid'];
 	$parameters['traerTodas']=true;
 
@@ -26,7 +26,8 @@ try
 				'cliente'=>$respuesta->Value2,
 				'fecha'=>$respuesta->Value3,
 				'total'=>$respuesta->Value4,
-				'estado'=>$respuesta->Value5
+				'estado'=>$respuesta->Value5,
+          'vendedor'=>$respuesta->Value6
 			];
 		}else{
 	foreach ($respuesta as $vta) {
@@ -36,7 +37,8 @@ try
 			'cliente'=>$vta->Value2,
 			'fecha'=>$vta->Value3,
 			'total'=>$vta->Value4,
-			'estado'=>$vta->Value5
+			'estado'=>$vta->Value5,
+            'vendedor'=>$vta->Value6
 		];
 	}
 }

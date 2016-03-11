@@ -17,7 +17,7 @@ try
 	$idVta =json_decode($_POST['id_vta']);
 
 	$parameters = array();
-	$parameters['token'] = 			$_COOKIE['token'];
+	$parameters['token'] = 			$_SESSION['token'];
 	$parameters['idVta']=			$idVta;
 	
 	try{
