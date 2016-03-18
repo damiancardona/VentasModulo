@@ -138,6 +138,7 @@ try
                 $parameters['PotencialConsumoComprasObsv'] = isset($_POST['PotencialConsumoComprasObsv']) ? $_POST['PotencialConsumoComprasObsv'] : "";
                 $parameters['CantidadTrabajadores'] = $_POST['CantidadTrabajadores'];
                 $parameters['Antiguedad'] = $_POST['Antiguedad'];
+                $parameters['AntiguedadOtra'] = isset($_POST['AntiguedadOtra'])? $_POST['AntiguedadOtra'] : "";
                 $parameters['PreferenciaResMarca1'] = isset($_POST['PreferenciaResMarca1']) ? $_POST['PreferenciaResMarca1'] : "";
                 $parameters['PreferenciaResOtro1'] = isset($_POST['PreferenciaResOtro1']) ? $_POST['PreferenciaResOtro1'] : "";
                 $parameters['PreferenciaResMarca2'] = isset($_POST['PreferenciaResMarca2']) ? $_POST['PreferenciaResMarca2'] : "";
@@ -180,6 +181,16 @@ try
                 $parameters['Comercial'] = isset($_POST['Comercial']) ? $_POST['Comercial'] : '';
                 $parameters['Cliente'] = isset($_POST['Cliente']) ? $_POST['Cliente'] : '';
                 $parameters['NumeroCuenta'] = isset($_POST['NumeroCuenta']) ? $_POST['NumeroCuenta'] : '';
+                $parameters['TipoCliente'] = isset($_POST['TipoCliente']) ? $_POST['TipoCliente'] : '';
+                $parameters['Fidelizacion'] = isset($_POST['Fidelizacion']) ? $_POST['Fidelizacion'] : '';
+                $parameters['PenetracionMercado'] = isset($_POST['PenetracionMercado']) ? $_POST['PenetracionMercado'] : '';
+                $parameters['ObjetivoVisita1'] = isset($_POST['ObjetivoVisita1']) ? $_POST['ObjetivoVisita1'] : '';
+                $parameters['StatusNegocioCotizar'] = isset($_POST['StatusNegocioCotizar']) ? $_POST['StatusNegocioCotizar'] : '';
+                $parameters['StatusNegocioCotizado'] = isset($_POST['StatusNegocioCotizado']) ? $_POST['StatusNegocioCotizado'] : '';
+                $parameters['StatusNegocioCerrado'] = isset($_POST['StatusNegocioCerrado']) ? $_POST['StatusNegocioCerrado'] : '';
+                $parameters['ProximasVisitas'] = isset($_POST['ProximasVisitas']) ? $_POST['ProximasVisitas'] : '';
+                $parameters['AccionesPorLinea'] = isset($_POST['AccionesPorLinea']) ? $_POST['AccionesPorLinea'] : '';
+                $parameters['ResultadoDeAcciones'] = isset($_POST['ResultadoDeAcciones']) ? $_POST['ResultadoDeAcciones'] : '';
                 $parameters['FechaVisita2'] = $_POST['FechaVisita2'];
                 $parameters['ObjetivoVisita2'] = isset($_POST['ObjetivoVisita2']) ? $_POST['ObjetivoVisita2'] : '';
                 $parameters['SeguimientoVisita2'] = isset($_POST['SeguimientoVisita2']) ? $_POST['SeguimientoVisita2'] : '';
@@ -238,7 +249,7 @@ try
                             $result['error'] = false;
                         } else {
                             $result['error'] = true;
-                            $result['msj'] = "Error: " . $respuesta->Web_Planillas_GuardaC01Result;
+                            $result['msj'] = "Error: " . $respuesta->Web_Planillas_GuardaC02Result;
                         }
                         break;
                 }
@@ -405,7 +416,7 @@ try
                             $result['error'] = false;
                         } else {
                             $result['error'] = true;
-                            $result['msj'] = "Error: " . $respuesta->Web_Planillas_GuardaC01Result;
+                            $result['msj'] = "Error: " . $respuesta->Web_Planillas_GuardaC03Result;
                         }
                         break;
                 }

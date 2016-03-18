@@ -159,6 +159,7 @@ var actualizaCampos = function(datos){
 
     $('#ComercializaMorelli').trigger('change');
     $('#ProductoExibidoCorrectamente').trigger('change');
+    $('#Antiguedad').trigger('change');
     $(".fecha").trigger("change");
 
 };

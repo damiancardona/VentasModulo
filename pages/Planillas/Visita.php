@@ -104,6 +104,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="LunesMC1" name="LunesMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -191,6 +199,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id="LunesTC1" name="LunesTC1" class="form-control" placeholder="" type="text">
@@ -295,6 +311,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="MartesMC1" name="MartesMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -382,6 +406,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id="MartesTC1" name="MartesTC1" class="form-control" placeholder="" type="text">
@@ -486,6 +518,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="MiercolesMC1" name="MiercolesMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -573,6 +613,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id=txtMiercolesTC1"" name="MiercolesTC1" class="form-control" placeholder="" type="text">
@@ -677,6 +725,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="JuevesMC1" name="JuevesMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -764,6 +820,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id="JuevesTC1" name="JuevesTC1" class="form-control" placeholder="" type="text">
@@ -868,6 +932,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="ViernesMC1" name="ViernesMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -955,6 +1027,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id="ViernesTC1" name="ViernesTC1" class="form-control" placeholder="" type="text">
@@ -1059,6 +1139,14 @@ if(isset($_GET['idPlanilla'])){
                                                             <div class="box-body">
                                                                 <div class="row">
                                                                     <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
                                                                         <input id="SabadoMC1" name="SabadoMC1" class="form-control" placeholder="" type="text">
                                                                     </div>
                                                                     <div class="col-md-4">
@@ -1146,6 +1234,14 @@ if(isset($_GET['idPlanilla'])){
                                                                 <h3 class="box-title">TARDE</h3>
                                                             </div>
                                                             <div class="box-body">
+                                                                <div class="row">
+                                                                    <div class="col-md-8">
+                                                                        <label>Ciudad</label>
+                                                                    </div>
+                                                                    <div class="col-md-4">
+                                                                        <label>Visita por</label>
+                                                                    </div>
+                                                                </div>
                                                                 <div class="row">
                                                                     <div class="col-md-8">
                                                                         <input id="SabadoTC1" name="SabadoTC1" class="form-control" placeholder="" type="text">

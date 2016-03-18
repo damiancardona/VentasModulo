@@ -83,29 +83,29 @@ if(isset($_GET['idPlanilla'])){
                                             <div class="form-group col-md-3"></div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="">TIPO DE CLIENTE</label>
-                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                <label for=TipoCliente">TIPO DE CLIENTE</label>
+                                                <input id="TipoCliente" name="TipoCliente" class="form-control" placeholder="" type="text">
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="">FIDELIZACI&Oacute;N</label>
-                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                <label for="Fidelizacion">FIDELIZACI&Oacute;N</label>
+                                                <input id="Fidelizacion" name="Fidelizacion" class="form-control" placeholder="" type="text">
                                             </div>
 
                                             <div class="form-group col-md-6">
-                                                <label for="">PENETRACI&Oacute;N MERCADO</label>
-                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                <label for="PenetracionMercado">PENETRACI&Oacute;N MERCADO</label>
+                                                <input id="PenetracionMercado" name="PenetracionMercado" class="form-control" placeholder="" type="text">
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label>OBJETIVO DE LA VISITA</label>
-                                                <textarea class="form-control" placeholder="" style="resize: vertical;"></textarea>
+                                                <label for="ObjetivoVisita1">OBJETIVO DE LA VISITA</label>
+                                                <textarea id="ObjetivoVisita1" name="ObjetivoVisita1" class="form-control" placeholder="" style="resize: vertical;"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label for="">TIPO DE ACCI&Oacute;N</label>
+                                                <label>TIPO DE ACCI&Oacute;N</label>
                                             </div>
                                             <div class="form-group col-md-12">
                                                 <div class="form-group col-md-4">
@@ -264,12 +264,12 @@ if(isset($_GET['idPlanilla'])){
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-6">
-                                                <label>ACCION/ES POR L&Iacute;NEA DE PRODUCTO</label>
-                                                <textarea class="form-control" placeholder="" style="resize: vertical;"></textarea>
+                                                <label for="AccionesPorLinea">ACCION/ES POR L&Iacute;NEA DE PRODUCTO</label>
+                                                <textarea id="AccionesPorLinea" name="AccionesPorLinea"  class="form-control" placeholder="" style="resize: vertical;"></textarea>
                                             </div>
                                             <div class="form-group col-md-6">
-                                                <label>RESULTADO DE LAS ACCI&Oacute;NES REALIZADAS</label>
-                                                <textarea class="form-control" placeholder="" style="resize: vertical;"></textarea>
+                                                <label for="ResultadoDeAcciones">RESULTADO DE LAS ACCI&Oacute;NES REALIZADAS</label>
+                                                <textarea id="ResultadoDeAcciones" name="ResultadoDeAcciones" class="form-control" placeholder="" style="resize: vertical;"></textarea>
                                             </div>
                                         </div>
                                         <div class="row">
@@ -285,16 +285,16 @@ if(isset($_GET['idPlanilla'])){
                                                     <div class="box-body">
                                                         <div class="row">
                                                             <div class="form-group col-md-4">
-                                                                <label for="">A COTIZAR</label>
-                                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                                <label for="StatusNegocioCotizar">A COTIZAR</label>
+                                                                <input id="StatusNegocioCotizar" name="StatusNegocioCotizar" class="form-control" placeholder="" type="text">
                                                             </div>
                                                             <div class="form-group col-md-4">
-                                                                <label for="">COTIZADO</label>
-                                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                                <label for="StatusNegocioCotizado">COTIZADO</label>
+                                                                <input id="StatusNegocioCotizado" name="StatusNegocioCotizado" class="form-control" placeholder="" type="text">
                                                             </div>
                                                             <div class="form-group col-md-4">
-                                                                <label for="">CERRADO</label>
-                                                                <input id="" name="" class="form-control" placeholder="" type="text">
+                                                                <label for="StatusNegocioCerrado">CERRADO</label>
+                                                                <input id="StatusNegocioCerrado" name="StatusNegocioCerrado" class="form-control" placeholder="" type="text">
                                                             </div>
                                                         </div>
                                                     </div>
@@ -303,8 +303,8 @@ if(isset($_GET['idPlanilla'])){
                                         </div>
                                         <div class="row">
                                             <div class="form-group col-md-12">
-                                                <label> PR&Oacute;XIMAS VISITAS</label>
-                                                <textarea class="form-control" placeholder="" style="resize: vertical;"></textarea>
+                                                <label for="ProximasVisitas"> PR&Oacute;XIMAS VISITAS</label>
+                                                <textarea id="ProximasVisitas" name="ProximasVisitas"  class="form-control" placeholder="" style="resize: vertical;"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -479,7 +479,7 @@ if(isset($_GET['idPlanilla'])){
                         <div class="overlay" id="spinner" style="display: none">
                             <i class="fa fa-refresh fa-spin"></i>
                         </div>
-                    <!-- /.box -->
+                    </div>
                 </div>
             </div>
         </section>

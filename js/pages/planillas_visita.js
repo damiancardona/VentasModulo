@@ -42,6 +42,8 @@ $(document).ready(function () {
             $("#periodo_desde").val(start.format('DD/MM/YYYY'));
             $("#periodo_hasta").val(end.format('DD/MM/YYYY'));
         }).val(fIniciostr+" - "+fFinstr);
+    $("#periodo_desde").val(fIniciostr);
+    $("#periodo_hasta").val(fFinstr);
 
     if($("#idPlanilla").val() != 0){
         traeDatos($("#idPlanilla").val());

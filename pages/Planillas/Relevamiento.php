@@ -353,23 +353,23 @@ if(isset($_GET['idPlanilla'])){
                                                                             <input id="PreferenciaResMarca1"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaResOtro1"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
+                                                                            <input id="PreferenciaResOtro1"  name="PreferenciaResOtro1" class="form-control" placeholder="OTRAS:" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaResMarca2"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
+                                                                            <input id="PreferenciaResMarca2"  name="PreferenciaResMarca2" class="form-control" placeholder="MARCA:" type="text">
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaResOtro2"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
+                                                                            <input id="PreferenciaResOtro2"  name="PreferenciaResOtro2" class="form-control" placeholder="OTRAS:" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaResMarca3"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
+                                                                            <input id="PreferenciaResMarca3"  name="PreferenciaResMarca3" class="form-control" placeholder="MARCA:" type="text">
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaResOtro3"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
+                                                                            <input id="PreferenciaResOtro3"  name="PreferenciaResOtro3" class="form-control" placeholder="OTRAS:" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -377,26 +377,26 @@ if(isset($_GET['idPlanilla'])){
                                                                     <label for="">GASTRON&Oacute;MICO</label>
                                                                     <div class="row">
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastMarca1"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
+                                                                            <input id="PreferenciaGastMarca1"  name="PreferenciaGastMarca1" class="form-control" placeholder="MARCA:" type="text">
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastOtro1"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
-                                                                        </div>
-                                                                    </div>
-                                                                    <div class="row">
-                                                                        <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastMarca2"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
-                                                                        </div>
-                                                                        <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastOtro2"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
+                                                                            <input id="PreferenciaGastOtro1"  name="PreferenciaGastOtro1" class="form-control" placeholder="OTRAS:" type="text">
                                                                         </div>
                                                                     </div>
                                                                     <div class="row">
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastMarca3"  name="PreferenciaResMarca1" class="form-control" placeholder="MARCA:" type="text">
+                                                                            <input id="PreferenciaGastMarca2"  name="PreferenciaGastMarca2" class="form-control" placeholder="MARCA:" type="text">
                                                                         </div>
                                                                         <div class="form-group col-md-6">
-                                                                            <input id="PreferenciaGastOtro3"  name="PreferenciaResMarca1" class="form-control" placeholder="OTRAS:" type="text">
+                                                                            <input id="PreferenciaGastOtro2"  name="PreferenciaGastOtro2" class="form-control" placeholder="OTRAS:" type="text">
+                                                                        </div>
+                                                                    </div>
+                                                                    <div class="row">
+                                                                        <div class="form-group col-md-6">
+                                                                            <input id="PreferenciaGastMarca3"  name="PreferenciaGastMarca3" class="form-control" placeholder="MARCA:" type="text">
+                                                                        </div>
+                                                                        <div class="form-group col-md-6">
+                                                                            <input id="PreferenciaGastOtro3"  name="PreferenciaGastOtro3" class="form-control" placeholder="OTRAS:" type="text">
                                                                         </div>
                                                                     </div>
                                                                 </div>
